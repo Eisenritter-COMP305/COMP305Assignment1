@@ -25,7 +25,7 @@ namespace Util
 
         [SerializeField]
         private int _lives { get; set; }
-        public TextMeshPro livesLable;
+        public TextMeshProUGUI livesLable;
 
 
         //Public Properties
