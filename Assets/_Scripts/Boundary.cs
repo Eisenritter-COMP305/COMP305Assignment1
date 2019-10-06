@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*******************************************/
+/*       Created By: George Zhou           */
+/*       Student ID: 300613283             */
+/*******************************************/
+
+//This script covers the boundary of an object, it is meant to be added to the Utility and serilized for use.
+
+using System.Collections;
 using System.Collections.Generic;
 
 

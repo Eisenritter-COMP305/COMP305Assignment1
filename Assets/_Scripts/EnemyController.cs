@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*******************************************/
+/*       Created By: George Zhou           */
+/*       Student ID: 300613283             */
+/*******************************************/
+
+//This script is meant to be attached to enemy prefab and sets their move/attack patterns
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Util;
@@ -15,6 +22,7 @@ public class EnemyController : MonoBehaviour
         CosMove,
         TanMove,
     }
+
     [Header("Move Patterns")]
     public MovePatterns movePatterns;
 
@@ -59,6 +67,9 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject, 7.5f);
     }
 
+    /// <summary>
+    /// This moves the enemy in a Sine graph pattern, the starting angle is its initial angle on the sine graph, the magnitude is the multiplier for the graph (Min/Max)
+    /// </summary>
     public void SinMove()
     {
         Vector3 movePath = new Vector3(curPosition.x , curPosition.y+Mathf.Sin(StartingAngle) *arcMagnitude, curPosition.z);
@@ -67,6 +78,9 @@ public class EnemyController : MonoBehaviour
         curPosition.x -= HorSpeedRange.minSpeed;
     }
 
+    /// <summary>
+    /// This move pattern is linear and sets where the enemy start
+    /// </summary>
     public void RandMove()
     {
         SetRandomSpeed();
@@ -77,7 +91,9 @@ public class EnemyController : MonoBehaviour
         curPosition.y -= verSpeed;
     }
 
-
+    /// <summary>
+    /// This function determine the velocity of the enemy
+    /// </summary>
     public void SetRandomSpeed()
     {
         verSpeed = Random.Range(VerSpeedRange.minSpeed, VerSpeedRange.maxSpeed);

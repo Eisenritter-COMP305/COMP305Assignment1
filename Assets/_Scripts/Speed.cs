@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*******************************************/
+/*       Created By: George Zhou           */
+/*       Student ID: 300613283             */
+/*******************************************/
+// This utility script control the speed component
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

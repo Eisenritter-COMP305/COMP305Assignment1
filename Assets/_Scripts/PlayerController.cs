@@ -1,17 +1,38 @@
-﻿using System.Collections;
+﻿/*******************************************/
+/*       Created By: George Zhou           */
+/*       Student ID: 300613283             */
+/*******************************************/
+
+//This is the player controller script, meant to be attached to the player character
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Util;
 
 public class PlayerController : MonoBehaviour
 {
+    private Rigidbody rb;
+    //[SerializeField]
+    public GameController gameController;
+
     public Speed speed;
     //Target destination
     private Transform target;
     public Boundary boundary;
 
     Vector3 dest = Vector3.zero;
-    
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        GameObject gameControllerObject = GameObject.Find("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+        rb = GetComponent<Rigidbody>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -19,6 +40,9 @@ public class PlayerController : MonoBehaviour
         CheckBounds();
     }
 
+    /// <summary>
+    /// Control the character depends on the input
+    /// </summary>
     public void Move()
     {
         float x = Input.GetAxis("Horizontal")*SpeedChange();
@@ -28,6 +52,9 @@ public class PlayerController : MonoBehaviour
         transform.position += movePath;
     }
 
+    /// <summary>
+    /// Check the boundary of the player movements
+    /// </summary>
     public void CheckBounds()
     {
         if (transform.position.y > boundary.TopBounds)
@@ -58,5 +85,15 @@ public class PlayerController : MonoBehaviour
     public float SpeedChange()
     {
         return CheckHealth() ? speed.maxSpeed : speed.maxSpeed;
+    }
+
+    //If the player collides with enemy object, they lose life
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+            gameController.Lives --;
+        }
     }
 }

@@ -1,10 +1,18 @@
-﻿using System.Collections;
+﻿/*******************************************/
+/*       Created By: George Zhou           */
+/*       Student ID: 300613283             */
+/*******************************************/
+
+// This script set set the spawning point of enemies
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Util;
 
 public class EnemySpawner : MonoBehaviour
 {
+    // Possible spawn point positions
     public enum SpawnerType
     {
         Static,
@@ -44,8 +52,6 @@ public class EnemySpawner : MonoBehaviour
     int enemyCounter = 0;
     int enemyIntervalCounter = 0;
     int intervalTimeLength = 0;
-
-    //public 
 
     // Start is called before the first frame update
     void Start()

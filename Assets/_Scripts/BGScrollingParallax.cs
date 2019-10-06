@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*******************************************/
+/*       Created By: George Zhou           */
+/*       Student ID: 300613283             */
+/*******************************************/
+
+//This class covers the parallax scrolling of the background and is meant to be attached to the background parent object
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Util;
@@ -39,6 +46,9 @@ public class BGScrollingParallax : MonoBehaviour
             m_rightIndex = m_layers.Length - 1;
     }
 
+    /// <summary>
+    /// This Function Scrolls to the Right
+    /// </summary>
     private void ScrollRight()
     {
         int lastLeft = m_leftIndex;
@@ -48,6 +58,7 @@ public class BGScrollingParallax : MonoBehaviour
         if (m_leftIndex == m_layers.Length)
             m_leftIndex = 0;
     }
+
     // Update is called once per frame
     private void Update()
     {

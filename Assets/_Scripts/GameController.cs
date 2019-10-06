@@ -1,8 +1,15 @@
-﻿using System.Collections;
+﻿/*******************************************/
+/*       Created By: George Zhou           */
+/*       Student ID: 300613283             */
+/*******************************************/
+
+// This is the game controller script, meant to be attached to a empty game object
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using TMPro; //This is required for TextMeshPro Control
 
 namespace Util
 {
@@ -25,11 +32,9 @@ namespace Util
 
         [SerializeField]
         private int _lives { get; set; }
+        [SerializeField]
         public TextMeshProUGUI livesLable;
 
-
-        //Public Properties
-        //[Header("Scoreboard")]
         public int Score {
             get
             {
@@ -59,23 +64,31 @@ namespace Util
             _score+=50;
         }
 
-        public void ResetScore()
+        public void ResetAll()
         {
             _score = 0;
+            _lives = 5;
         }
 
 
         // Start is called before the first frame update
         void Start()
         {
-            ResetScore();
+            AudioSource activeAudioSource = audioSources[(int)soundClip];
+            activeAudioSource.playOnAwake = true;
+            activeAudioSource.loop = true;
+            activeAudioSource.Play();
+
+            ResetAll();
             Score = 0;
+            Lives = 5;
         }
 
         // Update is called once per frame
         void Update()
         {
             scoreLable.text = $"Score: {Score}";
+            livesLable.text = $"Lives: {Lives}";
         }
     }
 }
